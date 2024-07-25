@@ -64,3 +64,18 @@ export async function getProductById(productId: string) {
     
   }
 }
+
+export async function getAllProducts() {
+  try {
+    connectToDB();
+    const products = await Product.find();
+
+    if (!products) return [];
+
+    return products;
+
+  } catch (error: any) {
+    throw new Error(`Failed to get products: ${error.message}`)
+    
+  }
+}
